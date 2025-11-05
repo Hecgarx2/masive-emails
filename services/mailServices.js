@@ -1,21 +1,29 @@
 const nodemailer = require("nodemailer");
-// Create a test account or replace with real credentials.
+const dotenv = require('dotenv');
+
+dotenv.config();
+
 const transporter = nodemailer.createTransport({
-  host: "gmail.",
+  service: "gmail",
   auth: {
     user: process.env.MAIL_USER,
-    pass: process.env.MAIL_PASSWORD
+    pass: process.env.MAIL_PASSWORD,
   },
 });
 
-const sendMail = async () => {
-  const info = await transporter.sendMail({
-    from: '"Maddison Foo Koch" <maddison53@ethereal.email>',
-    to: "bar@example.com, baz@example.com",
-    subject: "Hello ✔",
-    text: "Hello world?", // plain‑text body
-    html: "<b>Hello world?</b>", // HTML body
-  });
+const sendMail = async (to, subject, text) => {
+  try {
+    const info = await transporter.sendMail({
+      from: 'hectorgarx2@gmail.com',
+      to,
+      subject,
+      text,
+    });
 
-  console.log("Message sent:", info.messageId);
+    console.log("Message sent:", info.messageId);
+  } catch (error) {
+    console.log(error);
+  }
 };
+
+module.exports = { sendMail }
