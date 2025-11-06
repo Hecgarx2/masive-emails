@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento de Verificación Técnica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            color: #333;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+
+        .header-date {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 25px;
+        }
+
+        .date-box {
+            border: 1px solid #ccc;
+            padding: 8px 15px;
+            font-size: 1.1em;
+            font-weight: bold;
+            display: inline-block;
+            background-color: #e9ecef;
+            border-radius: 4px;
+        }
+
+        .date-label {
+            margin-right: 10px;
+            font-weight: normal;
+        }
+
+
+        .intro-text {
+            font-size: 1em;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .highlight-box {
+            display: inline-block;
+            border: 1px solid #aaa;
+            padding: 2px 5px;
+            margin: 0 5px;
+            font-weight: bold;
+            background-color: #fff;
+        }
+
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+
+        .table-header-title {
+            background-color: #343a40;
+            color: white;
+            font-size: 1.2em;
+            text-align: center;
+            padding: 15px;
+            font-weight: bold;
+        }
+
+
+        .data-table td:first-child {
+            width: 35%;
+            font-weight: bold;
+            background-color: #f8f9fa;
+        }
+
+
+        .data-table td:nth-child(2) {
+            background-color: #fff;
+        }
+
+
+        .dictamen-favorable {
+            color: #28a745;
+            font-weight: bold;
+        }
+
+
+        .payment-ids {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .id-box {
+            border: 2px solid #ffc107;
+            background-color: #fff3cd;
+            padding: 5px 10px;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+
+
+        .email-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .email-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="header-date">
+            <div class="date-box">
+                <span class="date-label">Fecha:</span> {{ date }}
+            </div>
+        </div>
+
+        <p class="intro-text">
+            El presente documento forma parte integral del Acta de Verificación Técnica Ambiente
+            con número de FO-<span class="highlight-box">{{ folio }}</span> levantada en atención a la SOLI-<span
+                class="highlight-box">{{ application }}</span>
+        </p>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th colspan="2" class="table-header-title">Generación de Residuos Sólidos Urbanos</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Razón Social</td>
+                    <td>{{ name }}</td>
+                </tr>
+                <tr>
+                    <td>Domicilio</td>
+                    <td>{{ address }}</td>
+                </tr>
+                <tr>
+                    <td>Dictamen de Generador de Cantidades Mínimas</td>
+                    <td class="dictamen-favorable">{{ opinion }}</td>
+                </tr>
+                <tr>
+                    <td>Fundamentación y Código de pago</td>
+                    <td>
+                        <p>Ley de Ingresos del Municipio de Zapopan, Jalisco para el Ejercicio Fiscal 2025</p>
+                        <div class="payment-ids">
+                            <span class="id-box">a) ID de cobro {{ id }}</span>
+                            <span class="id-box">b) ID de cobro {{ id }}</span>
+                        </div>
+                    </td>
+                </tr>
+                {{!-- <tr>
+                    <td>Enviar comprobante de pago al correo:</td>
+                    <td class="email-link">
+                        <a
+                            href="mailto:unidadintegralderesiduos@zapopan.gob.mx">unidadintegralderesiduos@zapopan.gob.mx</a>
+                    </td>
+                </tr> --}}
+            </tbody>
+        </table>
+
+    </div>
+</body>
+
+</html>
