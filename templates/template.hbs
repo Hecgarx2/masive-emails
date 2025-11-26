@@ -127,6 +127,10 @@
         .email-link a:hover {
             text-decoration: underline;
         }
+
+        .font-bold {
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -141,8 +145,8 @@
 
         <p class="intro-text">
             El presente documento forma parte integral del Acta de Verificación Técnica Ambiente
-            con número de FO-<span class="highlight-box">{{ folio }}</span> levantada en atención a la SOLI-<span
-                class="highlight-box">{{ application }}</span>
+            con número de <span class="font-bold">FOLIO: {{ folio }}</span> levantada en atención a la 
+            <span class="font-bold"> SOLICITUD: {{ application }}</span>
         </p>
 
         <table class="data-table">
@@ -153,34 +157,26 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Razón Social</td>
+                    <td class="font-bold">Razón Social</td>
                     <td>{{ name }}</td>
                 </tr>
                 <tr>
-                    <td>Domicilio</td>
+                    <td class="font-bold">Domicilio</td>
                     <td>{{ address }}</td>
                 </tr>
                 <tr>
-                    <td>Dictamen de Generador de Cantidades Mínimas</td>
+                    <td class="font-bold">Dictamen de Generador de Cantidades Mínimas</td>
                     <td class="dictamen-favorable">{{ opinion }}</td>
                 </tr>
                 <tr>
-                    <td>Fundamentación y Código de pago</td>
+                    <td class="font-bold">Fundamentación y Código de pago</td>
                     <td>
                         <p>Ley de Ingresos del Municipio de Zapopan, Jalisco para el Ejercicio Fiscal 2025</p>
                         <div class="payment-ids">
-                            <span class="id-box">a) ID de cobro {{ id }}</span>
-                            <span class="id-box">b) ID de cobro {{ id }}</span>
+                            <span class="id-box"> ID de cobro {{ id }}</span>
                         </div>
                     </td>
                 </tr>
-                {{!-- <tr>
-                    <td>Enviar comprobante de pago al correo:</td>
-                    <td class="email-link">
-                        <a
-                            href="mailto:unidadintegralderesiduos@zapopan.gob.mx">unidadintegralderesiduos@zapopan.gob.mx</a>
-                    </td>
-                </tr> --}}
             </tbody>
         </table>
 
