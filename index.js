@@ -3,8 +3,9 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const { sendMail } = require("./services/mailServices");
 const { formatDate } = require("./services/formatDate");
+const { readExcelFile } = require('./services/readExcel');
+const { rowToEmailPayload } = require('./mappers/rowToEmailPayload');
 const multer = require("multer");
-const xlsx = require("xlsx");
 
 const app = express();
 app.use(cors());
@@ -13,23 +14,19 @@ app.use(express.json());
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-app.post("/send-email", upload.single("file") ,(req, res) => {
+app.post("/send-email", upload.single("file") , async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({error: "No file uploaded."});
     }
 
-    // Read the uploaded Excel file
-    const workbook = xlsx.read(req.file.buffer, { type: "buffer" });
+    const data = await readExcelFile(req.file.buffer);
+    const fechaFormateada = formatDate();
 
-    // Get the first sheet
-    const sheetName = workbook.SheetNames[0];
-    const worksheet = workbook.Sheets[sheetName];
-    
-
-    // Convert sheet to JSON
-    const data = xlsx.utils.sheet_to_json(worksheet);
-
+    for (const row of data) {
+      const payload = rowToEmailPayload(row);
+      sendMail(row['CORREO ELECTRONICO'], 'test', payload);
+    }
     // Responder al frontend
     return res.json({
         message: "Excel leído correctamente",
