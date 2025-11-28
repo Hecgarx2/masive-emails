@@ -25,7 +25,12 @@ app.post("/send-email", upload.single("file") , async (req, res) => {
 
     for (const row of data) {
       const payload = rowToEmailPayload(row);
-      sendMail(row['CORREO ELECTRONICO'], 'test', payload);
+      payload.date = fechaFormateada;
+      if (!payload.email) {
+        console.warn(`No email found for row with FOLIO: ${payload.folio}`);
+        continue; // Saltar filas sin correo electrónico
+      }
+      sendMail(payload.email, 'test', payload);
     }
     // Responder al frontend
     return res.json({

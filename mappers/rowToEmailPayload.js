@@ -1,13 +1,16 @@
 function rowToEmailPayload(row) {
+  const correoRaw = row["CORREO ELECTRONICO"];
+  const addressRaw = row["DOMICILIO COMPLETO"];
   return {
-    date: row["FECHA"],
-    folio: row["FOLIO"],
-    application: row["APPLICATION"],
-    name: row["NOMBRE"],
-    address: row["DIRECCION"],
-    opinion: row["OPINION"],
-    id: row["ID"],
+    email: correoRaw?.text ?? correoRaw ?? null,
+    date: null,
+    folio: row["FOLIO"] ?? null,
+    application: row["SOLICITUD"] ?? null,
+    name: row["RAZÓN SOCIAL"] ?? null,
+    address: addressRaw?.result ?? addressRaw ?? null,
+    opinion: 'Favorable',
+    id: row["ID COBRO"] ?? null,
   };
 }
 
-module.exports = rowToEmailPayload;
+module.exports = { rowToEmailPayload };
