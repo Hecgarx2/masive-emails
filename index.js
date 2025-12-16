@@ -33,10 +33,15 @@ app.post("/send-email", upload.single("file") , async (req, res) => {
         console.warn(`No email found for row with FOLIO: ${payload.folio}`);
         continue; // Saltar filas sin correo electrónico
       }
-      await sendMail(payload.email, 'test', payload);
+      const response = await sendMail(payload.email, 'test', payload);
+      if (!response) {
+        console.error(`Failed to send email to: ${payload.folio}`);
+      }
     }
     // Responder al frontend
     return res.json({
+        success: true,
+        code: 200,
         message: "Excel leído correctamente",
         rows: data,
     });

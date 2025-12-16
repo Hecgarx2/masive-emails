@@ -61,8 +61,10 @@ const sendMail = async (to, subject, context) => {
     });
 
     console.log("Message sent:", info.messageId);
+    return info;
   } catch (error) {
     console.log(error);
+    return null;
   }
 };
 
