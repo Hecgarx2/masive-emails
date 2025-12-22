@@ -131,13 +131,38 @@
         .font-bold {
             font-weight: bold;
         }
+
+        .bg-yellow {
+            background-color: oklch(94.5% 0.129 101.54);
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
-
-        <div class="header-date">
+        <p class="intro-text">
+            Hola, buen día. <br>
+            Es un placer saludarle e invitarle a la renovación de su Dictamen de Generador de Cantidades Mínimas de Residuos Sólidos Urbanos {{ year }}. 
+            Le anexo por este medio la papeleta con el ID de cobro correspondiente a su giro comercial para el pago, el cual podrá realizar en cualquier recaudadora municipal mostrando dicha papeleta impresa.
+            <br><br>
+            Le informamos que si realiza el pago entre enero y hasta el 1º de marzo, podrá obtener un <span style="font-weight: bold; background-color: #FEF08A;">descuento del 10%</span> por pronto pago, el cual podrá solicitar directamente en la recaudadora.
+            <br><br>
+            Para completar el proceso, le solicitamos enviar una copia de los siguientes documentos:
+            <br>
+        </p>
+        <ol class="intro-text">
+            <li>La Licencia Municipal {{ year }}. (en caso de aún no contar con la {{ year }}, puede mandar la {{ previousYear }}).</li>
+            <li>El comprobante de pago por el servicio de recolección municipal. Puede enviarlo a este correo (unidadintegralderesiduos@zapopan.gob.mx) o acudir a las oficinas de la Dirección de Medio Ambiente con el original y una copia del mismo en la Unidad de Gestión Integral de Residuos para la emisión de su dictamen.</li>
+            <li>En caso de generar residuos de manejo especial o residuos peligrosos, por favor envíenos una copia del manifiesto (que no tenga más de 6 meses).</li>
+        </ol>
+        <p class="intro-text">
+            Una vez recibidos los documentos solicitados, elaboraremos el Dictamen de Generador de Cantidades Mínimas de Residuos Sólidos Urbanos. Cuando su dictamen esté listo, le notificaremos por correo electrónico. En caso de que desee recoger el original, podrá hacerlo en nuestras oficinas en un horario de 9:00 am a 4:30 pm, presentando una copia de su identificación.
+            <br><br>
+            Sin más por el momento, quedo a su disposición para cualquier duda o aclaración que pueda tener.
+            <br><br>
+            Saludos cordiales.
+        </p>
+        {{!-- <div class="header-date">
             <div class="date-box">
                 <span class="date-label">Fecha:</span> {{ date }}
             </div>
@@ -178,7 +203,7 @@
                     </td>
                 </tr>
             </tbody>
-        </table>
+        </table> --}}
 
     </div>
 </body>

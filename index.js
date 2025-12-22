@@ -25,7 +25,6 @@ app.post("/send-email", upload.single("file") , async (req, res) => {
 
     const data = await readExcelFile(req.file.buffer);
     const date = formatDate();
-
     for (const row of data) {
       const payload = rowToEmailPayload(row);
       payload.date = date;
@@ -33,7 +32,9 @@ app.post("/send-email", upload.single("file") , async (req, res) => {
         console.warn(`No email found for row with FOLIO: ${payload.folio}`);
         continue; // Saltar filas sin correo electrónico
       }
-      const response = await sendMail(payload.email, 'test', payload);
+      const today = new Date();
+      // const response = await sendMail(payload.email, `Papeleta de renovación para Dictamen de Generador de Cantidades Mínimas ${today.getFullYear()}`, payload);
+      const response = await sendMail(payload.email, `Papeleta de renovación para Dictamen de Generador de Cantidades Mínimas ${today.getFullYear()}`, {year : today.getFullYear(), previousYear: today.getFullYear() -1, ...payload});
       if (!response) {
         console.error(`Failed to send email to: ${payload.folio}`);
       }
@@ -64,7 +65,7 @@ app.get("/preview/template", (req, res) => {
     const imgData = fs.readFileSync(pathZapopan);
     const imgZapopan = `data:image/png;base64,${imgData.toString('base64')}`;
 
-    const html = renderTemplate("pdf", {
+    const html = renderTemplate("template", {
       date: new Date().toLocaleDateString(),
       imageSrc: imgMedioAmbiente,
       logoSrc: imgZapopan
